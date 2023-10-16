@@ -1,6 +1,11 @@
 package com.example.punchpowercalculator;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import jxl.Workbook;
@@ -13,11 +18,41 @@ import java.util.Locale;
 
 public class Logbook extends AppCompatActivity {
 
+    private TableLayout tableLayout;
+    private Button addRowButton;
+    private int rowCounter = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logbook);
-        createExcelSpreadsheet();
+//        createExcelSpreadsheet();
+        tableLayout = findViewById(R.id.tableLayout);
+        addRowButton = findViewById(R.id.addRowButton);
+        addRowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addRow("new data", "new data"); // Call a method to add a new row
+            }
+        });
+    }
+
+    private void addRow(String column1Text, String column2Text) {
+        TableRow newRow = new TableRow(this);
+        newRow.setBackgroundResource(R.drawable.white);
+
+        TextView cell1 = new TextView(this);
+        cell1.setText(column1Text);
+        cell1.setPadding(5, 5, 5, 5);
+
+        TextView cell2 = new TextView(this);
+        cell2.setText(column2Text);
+        cell2.setPadding(5, 5, 5, 5);
+
+        newRow.addView(cell1);
+        newRow.addView(cell2);
+
+        tableLayout.addView(newRow);
+        rowCounter++;
     }
 
     private void createExcelSpreadsheet() {
