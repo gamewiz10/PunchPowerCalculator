@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PreCalculator">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bruce_lee"
+        android:scaleType="centerCrop" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,12 +36,33 @@
         android:layout_height="wrap_content"
         android:hint="Enter weight in lbs"
         android:inputType="number"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/instructionsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Welcome to the punch power calculator. Please enter you current
+bodyweight in lbs and then press confirm. For optimal results,
+please focus the phone camera perpendicular to where you will stand when performing
+the punch. There will be a 10 second countdown to allow you to prepare before the filming will begin."
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#FFFFFF"
+        app:layout_constraintVertical_bias="0.973" />
 
     <Button
         android:id="@+id/confirm_button"

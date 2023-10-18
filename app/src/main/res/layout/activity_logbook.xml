@@ -24,12 +24,22 @@
     <!-- Header Row -->
     <TableRow>
         <TextView
-            android:text="Column 1"
+            android:text="Weight (lbs)"
             android:layout_weight="1"
             android:padding="5dp"
             android:background="#FFFFFF" />
         <TextView
-            android:text="Column 2"
+            android:text="Date"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:background="#FFFFFF" />
+        <TextView
+            android:text="Time"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:background="#FFFFFF" />
+        <TextView
+            android:text="Energy Produced"
             android:layout_weight="1"
             android:padding="5dp"
             android:background="#FFFFFF" />

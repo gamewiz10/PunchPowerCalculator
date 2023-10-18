@@ -31,12 +31,12 @@ public class Logbook extends AppCompatActivity {
         addRowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addRow("new data", "new data"); // Call a method to add a new row
+                addRow("weight", "date", "time", "energy"); // Call a method to add a new row
             }
         });
     }
 
-    private void addRow(String column1Text, String column2Text) {
+    private void addRow(String column1Text, String column2Text, String column3Text, String column4Text) {
         TableRow newRow = new TableRow(this);
         newRow.setBackgroundResource(R.drawable.white);
 
@@ -48,8 +48,18 @@ public class Logbook extends AppCompatActivity {
         cell2.setText(column2Text);
         cell2.setPadding(5, 5, 5, 5);
 
+        TextView cell3 = new TextView(this);
+        cell3.setText(column3Text);
+        cell3.setPadding(5, 5, 5, 5);
+
+        TextView cell4 = new TextView(this);
+        cell4.setText(column4Text);
+        cell4.setPadding(5, 5, 5, 5);
+
         newRow.addView(cell1);
         newRow.addView(cell2);
+        newRow.addView(cell3);
+        newRow.addView(cell4);
 
         tableLayout.addView(newRow);
         rowCounter++;
