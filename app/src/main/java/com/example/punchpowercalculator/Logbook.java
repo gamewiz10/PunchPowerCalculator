@@ -30,31 +30,39 @@ public class Logbook extends AppCompatActivity {
     //pre made variables
     private TableLayout tableLayout;
     private Button addRowButton;
-    private int rowCounter = 1;
 
     //post recycler variables
+    private RecyclerView recyclerView;
+    private TableViewAdapter adapter;
+    private List<LogStats> data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logbook);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDeliveryProductList);
-
-        TableViewAdapter adapter = new TableViewAdapter(getStatList());
+        data = getStatList();
+        adapter = new TableViewAdapter(data);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-
         recyclerView.setAdapter(adapter);
 
+        addRowButton = findViewById(R.id.addRowButton);
 
+        addRowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogStats newStats = new LogStats(150, "10/20/2022", "3:00", 120);
+                data.add(newStats);
+                adapter.notifyItemInserted(data.size());
+            }
+        });
     }
+
 
     private List<LogStats> getStatList() {
         List<LogStats> statsList = new ArrayList<>();
-
-        statsList.add(new LogStats(150, "10/22/2023", "2:25", 300));
-
         return statsList;
     }
 
