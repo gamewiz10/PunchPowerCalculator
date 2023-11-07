@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "PunchPowerCalculator"
+include ':app'
+include ':sdk'
+//project(":OpenCV-android-sdk").projectDir = file("C:\\Users\\mysta\\Downloads\\opencv-4.8.0-android-sdk\\OpenCV-android-sdk\\sdk")
