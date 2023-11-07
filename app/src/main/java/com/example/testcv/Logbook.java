@@ -28,7 +28,8 @@ public class Logbook extends AppCompatActivity {
     //post recycler variables
     private RecyclerView recyclerView;
     private TableViewAdapter adapter;
-    private List<LogStats> data;
+    private List<LogStats> data = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +47,17 @@ public class Logbook extends AppCompatActivity {
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDeliveryProductList);
-        data = getStatList();
+
         adapter = new TableViewAdapter(data);
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
+
         addRowButton = findViewById(R.id.addRowButton);
+        Button removeRowButton = findViewById(R.id.removeRowButton);
 
         addRowButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,17 @@ public class Logbook extends AppCompatActivity {
                 data.add(newStats);
                 adapter.notifyItemInserted(data.size());
                 SaveData();
+            }
+        });
+
+        removeRowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (data.size() > 1) {
+                    data.remove(data.size() - 1);
+                    adapter.notifyItemRemoved(data.size());
+                    SaveData();
+                }
             }
         });
     }
@@ -83,7 +98,6 @@ public class Logbook extends AppCompatActivity {
 
         String dataJson = toJson(data);
 
-        // Save the JSON string in SharedPreferences
         editor.putString("data", dataJson);
         editor.apply();
     }
@@ -114,6 +128,7 @@ public class Logbook extends AppCompatActivity {
 
     private List<LogStats> getStatList() {
         List<LogStats> statsList = new ArrayList<>();
+        statsList.add(new LogStats(150, "10/22/2023", "2:25", 300));
         return statsList;
     }
 
