@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
+import org.opencv.core.Core;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.opencv.android.OpenCVLoader;
@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(OpenCVLoader.initDebug()) {
+            Log.d("OpenCV Test", "OpenCV is integrated successfully!");
+        }
     }
 
     public void openCalculator(View view){
