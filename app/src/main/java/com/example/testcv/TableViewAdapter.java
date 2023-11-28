@@ -41,7 +41,7 @@ public class TableViewAdapter extends RecyclerView.Adapter {
             rowViewHolder.txtenergy.setText("energy");
         }
         else {
-            LogStats stats = statsList.get(rowPos -1);
+            LogStats stats = statsList.get(rowPos-1);
 
             rowViewHolder.txtweight.setBackgroundResource(R.drawable.table_content_cell_bg);
             rowViewHolder.txtdate.setBackgroundResource(R.drawable.table_content_cell_bg);
