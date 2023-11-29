@@ -341,6 +341,11 @@ public class JavaCamera2View extends CameraBridgeViewBase {
         }
 
         @Override
+        public void onCameraViewStopped() {
+
+        }
+
+        @Override
         public Mat rgba() {
             Image.Plane[] planes = mImage.getPlanes();
             int w = mImage.getWidth();

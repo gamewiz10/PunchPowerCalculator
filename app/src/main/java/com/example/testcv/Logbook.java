@@ -29,11 +29,13 @@ public class Logbook extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TableViewAdapter adapter;
     private List<LogStats> data = new ArrayList<>();
+    double power;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logbook);
+        power = PowerData.getInstance().getPower();
 
         loadSavedData();
 
@@ -62,7 +64,7 @@ public class Logbook extends AppCompatActivity {
         addRowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogStats newStats = new LogStats(150, "10/20/2022", "3:00", 120);
+                LogStats newStats = new LogStats(150, "10/20/2022", "3:00", power);
                 data.add(newStats);
                 adapter.notifyItemInserted(data.size());
                 SaveData();
@@ -91,7 +93,7 @@ public class Logbook extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void SaveData() {
+    public void SaveData() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -100,6 +102,17 @@ public class Logbook extends AppCompatActivity {
 
         editor.putString("data", dataJson);
         editor.apply();
+    }
+
+    public List<LogStats> getData() {
+        return data;
+    }
+
+    public void addLogStats(LogStats logStats) {
+        data.add(logStats);
+    }
+    public int getsize() {
+        return data.size();
     }
 
     private void loadSavedData() {

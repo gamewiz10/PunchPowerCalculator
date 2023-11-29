@@ -6,7 +6,7 @@ public class LogStats {
     private String time;
     private int energy;
 
-    public LogStats(){
+    public LogStats(int weight, String date, String time, double power){
 
     }
 

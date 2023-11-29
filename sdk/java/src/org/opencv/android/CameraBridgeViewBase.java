@@ -180,6 +180,12 @@ public abstract class CameraBridgeViewBase extends SurfaceView implements Surfac
      */
     public interface CvCameraViewFrame {
 
+//        abstract Mat onCameraFrame(CvCameraViewFrame inputFrame);
+//
+//        Mat onCameraFrame(CvCameraViewFrame inputFrame);
+
+        void onCameraViewStopped();
+
         /**
          * This method returns RGBA Mat with frame
          */

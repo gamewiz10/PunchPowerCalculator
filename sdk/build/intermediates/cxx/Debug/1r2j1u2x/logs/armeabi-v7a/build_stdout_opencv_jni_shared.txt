@@ -1,2 +1,0 @@
-ninja: Entering directory `C:\Users\mysta\AndroidStudioProjects\punchpowercalculator\sdk\.cxx\Debug\1r2j1u2x\armeabi-v7a'
-ninja: no work to do.

@@ -22,9 +22,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCalculator(View view){
-        Intent intent = new Intent(this, PreCalculator.class);
+        Intent intent = new Intent(this, ImagePickerActivity.class);
         startActivity(intent);
     }
+
 
     public void openLogbook(View view) {
         Intent intent = new Intent(this, Logbook.class);
