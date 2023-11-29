@@ -11,7 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class CalculatorActivity extends AppCompatActivity {
     private TextView resultTextView;
@@ -20,6 +24,7 @@ public class CalculatorActivity extends AppCompatActivity {
     private Bitmap selectedImage2;
     Logbook logbook = new Logbook();
     private TableViewAdapter adapter;
+    private List<LogStats> data = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +46,11 @@ public class CalculatorActivity extends AppCompatActivity {
         double gravity = 9.81;
         double power = (mass *gravity * heightChange);
         PowerData.getInstance().setPower(power);
-        LogStats newStats = new LogStats(150, "10/20/2022", "3:00", power);
+        LogStats newStats = new LogStats(165, getCurrentDate(), getCurrentTime(), power);
 //        logbook.addLogStats(newStats);
-//        adapter = new TableViewAdapter();
-//        adapter.notifyItemInserted(logbook.getData().size());
+//        adapter = new TableViewAdapter(data);
+//        data.add(newStats);
+//        adapter.notifyItemInserted(data.size());
 //        logbook.SaveData();
 
 
@@ -80,6 +86,21 @@ public class CalculatorActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    private String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
+
+        String currentTime = timeFormat.format(calendar.getTime());
+        return currentTime;
+    }
+    private String getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
+
+        String currentDate = dateFormat.format(calendar.getTime());
+        return currentDate;
     }
 
 
