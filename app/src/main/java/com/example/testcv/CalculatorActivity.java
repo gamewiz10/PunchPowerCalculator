@@ -47,11 +47,11 @@ public class CalculatorActivity extends AppCompatActivity {
         double power = (mass *gravity * heightChange);
         PowerData.getInstance().setPower(power);
         LogStats newStats = new LogStats(165, getCurrentDate(), getCurrentTime(), power);
-//        logbook.addLogStats(newStats);
-//        adapter = new TableViewAdapter(data);
-//        data.add(newStats);
-//        adapter.notifyItemInserted(data.size());
-//        logbook.SaveData();
+        logbook.addLogStats(newStats);
+        adapter = new TableViewAdapter(data);
+        data.add(newStats);
+        adapter.notifyItemInserted(data.size());
+        logbook.SaveData();
 
 
 
@@ -93,6 +93,7 @@ public class CalculatorActivity extends AppCompatActivity {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
 
         String currentTime = timeFormat.format(calendar.getTime());
+        PowerData.getInstance().setTime(currentTime);
         return currentTime;
     }
     private String getCurrentDate() {
@@ -100,6 +101,7 @@ public class CalculatorActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
 
         String currentDate = dateFormat.format(calendar.getTime());
+        PowerData.getInstance().setDate(currentDate);
         return currentDate;
     }
 

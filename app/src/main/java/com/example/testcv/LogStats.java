@@ -4,13 +4,11 @@ public class LogStats {
     private int weight;
     private String date;
     private String time;
-    private int energy;
+    private double energy;
 
-    public LogStats(int weight, String date, String time, double power){
 
-    }
 
-    public LogStats(int weight, String date, String time, int energy){
+    public LogStats(int weight, String date, String time, double energy){
         this.weight = weight;
         this.date = date;
         this.time = time;
@@ -41,7 +39,7 @@ public class LogStats {
         this.time = time;
     }
 
-    public int getEnergy(){
+    public double getEnergy(){
         return energy;
     }
 
