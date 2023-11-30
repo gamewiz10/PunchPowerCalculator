@@ -38,7 +38,7 @@ public class TableViewAdapter extends RecyclerView.Adapter {
             rowViewHolder.txtweight.setText("weight (lbs)");
             rowViewHolder.txtdate.setText("date");
             rowViewHolder.txttime.setText("time");
-            rowViewHolder.txtenergy.setText("energy");
+            rowViewHolder.txtenergy.setText("energy (joules)");
         }
         else {
             LogStats stats = statsList.get(rowPos-1);

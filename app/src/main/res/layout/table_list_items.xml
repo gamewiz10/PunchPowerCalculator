@@ -37,7 +37,7 @@
         android:id="@+id/energy"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Energy Produced"
+        android:text="Energy (joules)"
         android:layout_weight="4"
         android:padding="5dp"
         android:background="@drawable/table_content_cell_bg"

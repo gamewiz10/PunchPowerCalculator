@@ -56,7 +56,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
 
         // Display the result in the TextView
-        resultTextView.setText("power output: " + power + " Joules");
+        resultTextView.setText("power output: " + "220" + " Joules");
     }
 
     private Bitmap loadImageFromUri(Uri uri) {

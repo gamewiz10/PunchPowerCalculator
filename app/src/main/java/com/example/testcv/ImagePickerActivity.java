@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,12 +29,16 @@ public class ImagePickerActivity extends AppCompatActivity {
     private Bitmap selectedImage1;
     private Bitmap selectedImage2;
     private Button confirmButton;
+    private EditText editTextWeight;
+    private EditText editTextBag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_picker);
 
+        editTextWeight = findViewById(R.id.weighInput);
+        editTextBag = findViewById(R.id.bagInput);
         imageView1 = findViewById(R.id.imageView1);
         imageView2 = findViewById(R.id.imageView2);
         confirmButton = findViewById(R.id.button);
@@ -133,6 +138,29 @@ public class ImagePickerActivity extends AppCompatActivity {
 
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+    public void saveWeightNumber(View view) {
+        String numberText = editTextWeight.getText().toString();
+        if (!numberText.isEmpty()) {
+            try {
+                int number = Integer.parseInt(numberText);
+            } catch (NumberFormatException e) {
+                Toast toast = Toast.makeText(this, "please enter a weight in lbs", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+    }
+
+    public void saveNumber(View view){
+        String numberText = editTextBag.getText().toString();
+        if(!numberText.isEmpty()) {
+            try {
+                int number = Integer.parseInt(numberText);
+            } catch (NumberFormatException e) {
+                Toast toast = Toast.makeText(this, "please enter a bag weight in lbs", Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
     }

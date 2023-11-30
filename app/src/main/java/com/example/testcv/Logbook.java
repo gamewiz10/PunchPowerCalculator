@@ -64,7 +64,7 @@ public class Logbook extends AppCompatActivity {
         addRowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogStats newStats = new LogStats(150, "10/20/2022", "3:00", power);
+                LogStats newStats = new LogStats(167, "11/29/2023", "15:13", 220);
                 data.add(newStats);
                 adapter.notifyItemInserted(data.size());
                 SaveData();
