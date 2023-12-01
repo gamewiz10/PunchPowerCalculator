@@ -44,7 +44,8 @@ public class CalculatorActivity extends AppCompatActivity {
         int heightChange = Math.abs(calculateHeightChange(selectedImage1, selectedImage2));
         double mass = (PowerData.getInstance().getWeight())/2.205;
         double gravity = 9.81;
-        double power = (mass *gravity * heightChange)/140;
+        double height = PowerData.getInstance().getHeight();
+        double power = ((mass *gravity * heightChange)/140) *height/5;
         String roundPower = String.format("%.2f", power);
         PowerData.getInstance().setPower(power);
         PowerData.getInstance().setStats(PowerData.getInstance().getWeight(), getCurrentDate(), getCurrentTime(), roundPower);

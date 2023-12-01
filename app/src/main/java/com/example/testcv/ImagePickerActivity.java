@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,9 +29,10 @@ public class ImagePickerActivity extends AppCompatActivity {
 
     private Bitmap selectedImage1;
     private Bitmap selectedImage2;
-    private Button confirmButton;
+    private ImageButton confirmButton;
     private EditText editTextWeight;
     private EditText editTextBag;
+    private EditText editTextHeight;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class ImagePickerActivity extends AppCompatActivity {
 
         editTextWeight = findViewById(R.id.weighInput);
         editTextBag = findViewById(R.id.bagInput);
+        editTextHeight = findViewById(R.id.heightInput);
         imageView1 = findViewById(R.id.imageView1);
         imageView2 = findViewById(R.id.imageView2);
         confirmButton = findViewById(R.id.button);
@@ -65,12 +68,13 @@ public class ImagePickerActivity extends AppCompatActivity {
                 if (selectedImage1 == null || selectedImage2 == null){
                     Toast.makeText(ImagePickerActivity.this, "Please select 2 images", Toast.LENGTH_SHORT).show();
                 }
-                if ((editTextBag.getText().toString()).isEmpty() || (editTextWeight.getText().toString()).isEmpty()){
+                if ((editTextBag.getText().toString()).isEmpty() || (editTextWeight.getText().toString()).isEmpty() || (editTextHeight.getText().toString()).isEmpty()){
                     Toast.makeText(ImagePickerActivity.this, "Please input your weight and the bag weight", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     PowerData.getInstance().setBagWeight(Integer.parseInt(editTextBag.getText().toString()));
                     PowerData.getInstance().setWeight(Integer.parseInt(editTextWeight.getText().toString()));
+                    PowerData.getInstance().setHeight(Double.parseDouble(editTextHeight.getText().toString()));
                     startCalculating();
                 }
             }

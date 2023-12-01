@@ -45,6 +45,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.093" />
     <EditText
+        android:id="@+id/heightInput"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Enter bag height (ft) e.g. 5.9"
+        android:textColorHint="@color/black"
+        android:inputType="number"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.020"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.240" />
+    <EditText
         android:id="@+id/bagInput"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -58,7 +73,7 @@
         app:layout_constraintHorizontal_bias="0.020"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.168" />
 
 
     <TextView
@@ -102,14 +117,18 @@ make sure your images have a dot drawn on each one to note the change in height.
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectagle_border" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
         android:text="calculate"
+        android:src="@drawable/calculate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.314" />
+        app:layout_constraintVertical_bias="0.870" />
 </androidx.constraintlayout.widget.ConstraintLayout>

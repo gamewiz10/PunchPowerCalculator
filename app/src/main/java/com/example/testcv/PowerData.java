@@ -15,10 +15,12 @@ public class PowerData {
     private String date;
     private String time;
     private double power;
+    int index;
     int weight;
     double BagWeight;
     private Context context;
     private List<LogStats> stats = new ArrayList<>();
+    private double height;
     private TableViewAdapter singletonAdapter;
 
     private Logbook logbook;
@@ -34,6 +36,22 @@ public class PowerData {
             instance = new PowerData();
         }
         return instance;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getHeight() {
+        return height;
     }
 
     public void setDate(String date){
@@ -76,6 +94,10 @@ public class PowerData {
         LogStats logStats = new LogStats(weight, date, time, power);
         stats.add(logStats);
         singletonAdapter.notifyItemInserted(stats.size());
+    }
+    public void removeStats(){
+        stats.remove(index);
+        singletonAdapter.notifyItemRemoved(stats.size());
     }
     public TableViewAdapter getSingletonAdapter(){
         return singletonAdapter;
