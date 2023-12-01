@@ -61,10 +61,16 @@ public class ImagePickerActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (selectedImage1 == null || selectedImage2 == null){
                     Toast.makeText(ImagePickerActivity.this, "Please select 2 images", Toast.LENGTH_SHORT).show();
                 }
+                if ((editTextBag.getText().toString()).isEmpty() || (editTextWeight.getText().toString()).isEmpty()){
+                    Toast.makeText(ImagePickerActivity.this, "Please input your weight and the bag weight", Toast.LENGTH_SHORT).show();
+                }
                 else{
+                    PowerData.getInstance().setBagWeight(Integer.parseInt(editTextBag.getText().toString()));
+                    PowerData.getInstance().setWeight(Integer.parseInt(editTextWeight.getText().toString()));
                     startCalculating();
                 }
             }
@@ -141,8 +147,9 @@ public class ImagePickerActivity extends AppCompatActivity {
             }
         }
     }
-    public void saveWeightNumber(View view) {
+    public boolean saveWeightNumber(View view) {
         String numberText = editTextWeight.getText().toString();
+        PowerData.getInstance().setBagWeight(Integer.parseInt(numberText));
         if (!numberText.isEmpty()) {
             try {
                 int number = Integer.parseInt(numberText);
@@ -151,10 +158,13 @@ public class ImagePickerActivity extends AppCompatActivity {
                 toast.show();
             }
         }
+        else{return false;}
+        return true;
     }
 
-    public void saveNumber(View view){
+    public boolean saveNumber(View view){
         String numberText = editTextBag.getText().toString();
+        PowerData.getInstance().setBagWeight(Integer.parseInt(numberText));
         if(!numberText.isEmpty()) {
             try {
                 int number = Integer.parseInt(numberText);
@@ -163,7 +173,10 @@ public class ImagePickerActivity extends AppCompatActivity {
                 toast.show();
             }
         }
+        else{return false;}
+        return true;
     }
+
 
     public Bitmap getSelectedImage1() {
         return selectedImage1;

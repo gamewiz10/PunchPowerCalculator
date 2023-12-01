@@ -22,13 +22,12 @@ import java.util.List;
 public class Logbook extends AppCompatActivity {
 
     //pre made variables
-    private TableLayout tableLayout;
     private Button addRowButton;
 
     //post recycler variables
     private RecyclerView recyclerView;
-    private TableViewAdapter adapter;
-    private List<LogStats> data = new ArrayList<>();
+    private List<LogStats> data = PowerData.getInstance().getStats();
+    private TableViewAdapter adapter = PowerData.getInstance().getSingletonAdapter();
     double power;
 
     @Override
@@ -37,7 +36,13 @@ public class Logbook extends AppCompatActivity {
         setContentView(R.layout.activity_logbook);
         power = PowerData.getInstance().getPower();
 
+        PowerData powerData = PowerData.getInstance();
+        powerData.setContext(this); // Assuming you are in an Activity
+
         loadSavedData();
+//        powerData.updateSingletonAdapter(data);
+
+//        powerData.loadSavedData();
 
         Toolbar toolbar1 = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar1);
@@ -50,7 +55,7 @@ public class Logbook extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDeliveryProductList);
 
-        adapter = new TableViewAdapter(data);
+//        adapter = new TableViewAdapter(data);
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -64,12 +69,16 @@ public class Logbook extends AppCompatActivity {
         addRowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogStats newStats = new LogStats(167, "11/29/2023", "15:13", 220);
-                data.add(newStats);
-                adapter.notifyItemInserted(data.size());
-                SaveData();
+//                LogStats newStats = new LogStats(167, "11/29/2023", "15:13", 220);
+//                data.add(newStats);
+//                adapter.notifyItemInserted(data.size());
+
+                powerData.setStats(180, "11/29/2023", "15:13", "250");
+
+//                powerData.SaveData();
             }
         });
+
 
         removeRowButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,10 +86,17 @@ public class Logbook extends AppCompatActivity {
                 if (data.size() > 1) {
                     data.remove(data.size() - 1);
                     adapter.notifyItemRemoved(data.size());
-                    SaveData();
+                    PowerData.getInstance().SaveData();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -141,7 +157,7 @@ public class Logbook extends AppCompatActivity {
 
     private List<LogStats> getStatList() {
         List<LogStats> statsList = new ArrayList<>();
-        statsList.add(new LogStats(150, "10/22/2023", "2:25", 300));
+        statsList.add(new LogStats(150, "10/22/2023", "2:25", "300"));
         return statsList;
     }
 

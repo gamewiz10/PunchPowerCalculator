@@ -22,7 +22,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
     private Bitmap selectedImage1;
     private Bitmap selectedImage2;
-    Logbook logbook = new Logbook();
+    private Logbook logbook;
     private TableViewAdapter adapter;
     private List<LogStats> data = new ArrayList<>();
     @Override
@@ -42,21 +42,22 @@ public class CalculatorActivity extends AppCompatActivity {
         selectedImage2 = loadImageFromUri(image2Uri);
 
         int heightChange = Math.abs(calculateHeightChange(selectedImage1, selectedImage2));
-        int mass = 34;
+        double mass = (PowerData.getInstance().getWeight())/2.205;
         double gravity = 9.81;
-        double power = (mass *gravity * heightChange);
+        double power = (mass *gravity * heightChange)/140;
+        String roundPower = String.format("%.2f", power);
         PowerData.getInstance().setPower(power);
-        LogStats newStats = new LogStats(165, getCurrentDate(), getCurrentTime(), power);
-        logbook.addLogStats(newStats);
-        adapter = new TableViewAdapter(data);
-        data.add(newStats);
-        adapter.notifyItemInserted(data.size());
-        logbook.SaveData();
+        PowerData.getInstance().setStats(PowerData.getInstance().getWeight(), getCurrentDate(), getCurrentTime(), roundPower);
+//        LogStats newStats = new LogStats(165, getCurrentDate(), getCurrentTime(), power);
+//        logbook.addLogStats(newStats);
+//        data.add(newStats);
+//        adapter.notifyItemInserted(data.size());
+//        logbook.SaveData();
 
 
 
         // Display the result in the TextView
-        resultTextView.setText("power output: " + "220" + " Joules");
+        resultTextView.setText("power output: " + roundPower + " Joules");
     }
 
     private Bitmap loadImageFromUri(Uri uri) {
