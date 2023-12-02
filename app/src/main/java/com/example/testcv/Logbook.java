@@ -1,8 +1,12 @@
 package com.example.testcv;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.health.connect.datatypes.units.Power;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +17,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +110,41 @@ public class Logbook extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    public void doShare() {
+
+        View rootView = getWindow().getDecorView().getRootView();
+        rootView.setDrawingCacheEnabled(true);
+        Bitmap screenshotBitmap = Bitmap.createBitmap(rootView.getDrawingCache());
+        rootView.setDrawingCacheEnabled(false);
+
+        File imagePath = new File(getExternalCacheDir(), "screenshot.png");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(imagePath);
+            screenshotBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/*");
+        Uri imageUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", imagePath);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+
+
+        startActivity(Intent.createChooser(shareIntent, "Share using"));
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -113,6 +156,10 @@ public class Logbook extends AppCompatActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             onBackPressed();
+            return true;
+        }
+        if (id == R.id.action_share){
+            doShare();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -169,5 +216,6 @@ public class Logbook extends AppCompatActivity {
         statsList.add(new LogStats(150, "10/22/2023", "2:25", "300"));
         return statsList;
     }
+
 
 }
