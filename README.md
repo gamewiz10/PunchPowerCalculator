@@ -46,8 +46,6 @@ If you'd like to contribute:
 Fork the repository.
 Create a new branch for your feature or bug fix.
 Submit a pull request for review.
-License
-This project is licensed under the MIT License. See LICENSE for details.
 
 Contact
 For questions or feedback, reach out at joseph.bell.20@cnu.edu.
